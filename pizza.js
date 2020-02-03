@@ -17,9 +17,6 @@ const size = {
 
 class Pizza {
 
-    toppings;
-    size;
-
     get pizzaPrice() {
         if (!size[this.size]) {
             throw Error(`Size can't find`);
