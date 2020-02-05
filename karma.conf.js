@@ -5,7 +5,9 @@ module.exports = function (config) {
             '*.js': ['coverage']
         },
         files: [
-            '*.js',
+            'pizza.js',
+            'order.js',
+            'index.js',
             '*spec.js',
         ],
         plugins: [

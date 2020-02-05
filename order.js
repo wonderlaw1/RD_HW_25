@@ -5,11 +5,14 @@ class Order {
     get totalPrice() {
         return this.pizzas.reduce((acc, i) => {
             if (i.pizzaPrice === 0) {
-                throw Error(`Pizza can't cost 0 USD`)
+                console.error(`Pizza can't cost 0 USD`);
+                return acc;
             }
             if (!i.pizzaPrice) {
-                throw Error(`Pizza must have a price`)
+                console.error(`Pizza must have a price`);
+                return +acc;
             }
+            debugger;
             return acc + i.pizzaPrice;
         }, 0)
     }
@@ -21,8 +24,7 @@ class Order {
         this.pizzas.push(pizza);
     }
 
-    removePizza(pizza) {
-        const index = this.pizzas.indexOf(pizza);
+    removePizza(index) {
         this.pizzas.splice(index, 1);
     }
 }
