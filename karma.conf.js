@@ -5,10 +5,8 @@ module.exports = function (config) {
             '*.js': ['coverage']
         },
         files: [
-            'pizza.js',
-            'order.js',
-            'appController.js',
-            '*spec.js',
+            '*.js',
+            '*.spec.js',
         ],
         plugins: [
             'karma-jasmine',
@@ -17,7 +15,7 @@ module.exports = function (config) {
             'karma-chrome-launcher',
             'karma-coverage',
         ],
-        reporters: ['kjhtml', 'coverage'],
+        reporters: ['kjhtml'],
         colors: true,
         browsers: ['Chrome'],
         singleRun: false,
