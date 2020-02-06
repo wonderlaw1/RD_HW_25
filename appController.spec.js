@@ -48,9 +48,14 @@ describe('appController.js', () => {
         });
 
         it('should invoke remove pizza from order', () => {
+            window.appController = new AppController();
+            const removePizzaSpy = spyOn(window.appController, 'removePizza');
+
             appController.renderPizzasInOrder();
             const removeButton = orderElem.querySelectorAll('.pizza')[0].querySelector('button');
             removeButton.click();
+
+            expect(removePizzaSpy).toHaveBeenCalled();
         });
     });
 

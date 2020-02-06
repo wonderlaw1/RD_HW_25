@@ -44,7 +44,7 @@ class AppController {
                         <div class="toppings mb-5">${ toppings }</div>
                         <b>Price:</b>
                         <div class="price mb-5">${ price }$</div>
-                        <button class="button is-primary" onclick="event.stopPropagation(); appController.removePizza(${index})">Remove Pizza</button>
+                        <button class="button is-primary" onclick="event.stopPropagation(); window.appController.removePizza(${index})">Remove Pizza</button>
                     </div>
                 `;
             });
