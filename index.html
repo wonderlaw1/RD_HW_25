@@ -6,38 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        .pizza {
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-        .pizza:hover {
-            background: #ddd;
-            cursor: pointer;
-        }
-        .mb-20 {
-            margin-bottom: 20px;
-        }
-        .mb-15 {
-            margin-bottom: 15px;
-        }
-        .mb-5 {
-            margin-bottom: 5px;
-        }
-        .full-width {
-            width: 100%;
-        }
-        .is-centered {
-            text-align: center;
-        }
-        label {
-            padding-right: 5px;
-        }
-        input {
-            margin-right: 3px !important;
-        }
-    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -65,12 +35,13 @@
         </form>
 
         <h3 class="is-size-3">Order:</h3>
+
         <div class="order"></div>
     </div>
 
     <script src="pizza.js"></script>
     <script src="order.js"></script>
-    <script src="index.js"></script>
+    <script src="appController.js"></script>
     <script>
         const appController = new AppController();
         appController.init();

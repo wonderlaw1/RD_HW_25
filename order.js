@@ -12,8 +12,7 @@ class Order {
                 console.error(`Pizza must have a price`);
                 return +acc;
             }
-            debugger;
-            return acc + i.pizzaPrice;
+            return +(acc + i.pizzaPrice).toFixed(2);
         }, 0)
     }
 

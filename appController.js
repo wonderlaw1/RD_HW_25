@@ -1,8 +1,25 @@
 class AppController {
     order = new Order();
 
-    init() {
+    async init() {
+        await this.initOrder();
         this.renderOrder();
+    }
+
+    get pizzas() {
+        return fetch('http://localhost:3000/pizzas').then((res) => {
+            return res.json();
+        }).then((json) => {
+            return json;
+        });
+    }
+
+    async initOrder() {
+        const pizzas = await this.pizzas;
+
+        pizzas.forEach((i) => {
+            this.order.addPizza(new Pizza(i.toppings, i.size));
+        });
     }
 
     renderOrder() {
@@ -13,22 +30,23 @@ class AppController {
 
     renderPizzasInOrder() {
         const orderPizzas = this.order.pizzas;
+
         if (this.order.pizzas.length) {
             let itemsForRender = orderPizzas.map((pizza, index) => {
                 const size = pizza.size || '';
                 const toppings = pizza.toppings ? pizza.toppings.join(', ') : '';
                 const price = (pizza.toppings && pizza.size) ? pizza.pizzaPrice : '';
                 return `
-                <div class="pizza" onclick="appController.handleForm(${index})">
-                    <b>Size: </b>
-                    <div class="size mb-5">${ size }</div>
-                    <b>Toppings:</b>
-                    <div class="toppings mb-5">${ toppings }</div>
-                    <b>Price:</b>
-                    <div class="price mb-5">${ price }$</div>
-                    <button class="button is-primary" onclick="event.stopPropagation(); appController.removePizza(${index})">Remove Pizza</button>
-                </div>
-            `;
+                    <div class="pizza" onclick="appController.handleForm(${index})">
+                        <b>Size: </b>
+                        <div class="size mb-5">${ size }</div>
+                        <b>Toppings:</b>
+                        <div class="toppings mb-5">${ toppings }</div>
+                        <b>Price:</b>
+                        <div class="price mb-5">${ price }$</div>
+                        <button class="button is-primary" onclick="event.stopPropagation(); appController.removePizza(${index})">Remove Pizza</button>
+                    </div>
+                `;
             });
             document.querySelector('.order').innerHTML = itemsForRender.join('');
             return;
@@ -42,7 +60,7 @@ class AppController {
     }
 
     renderTotalPriceInOrder() {
-        const totalPriceTemplate = `<div class="is-size-2">Total Price: ${appController.order.totalPrice}</div>`;
+        const totalPriceTemplate = `<div class="is-size-2">Total Price: ${appController.order.totalPrice}$</div>`;
         document.querySelector('.order').insertAdjacentHTML('beforeend', totalPriceTemplate);
     }
 

@@ -7,7 +7,7 @@ module.exports = function (config) {
         files: [
             'pizza.js',
             'order.js',
-            'index.js',
+            'appController.js',
             '*spec.js',
         ],
         plugins: [
